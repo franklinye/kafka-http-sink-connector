@@ -43,6 +43,9 @@ public class ApiRequestInvoker {
 
     public void invoke(final Collection<SinkRecord> records){
         for(SinkRecord record: records){
+	    if (record == null) {
+                continue; 
+            }
 
             long start = System.currentTimeMillis();
 
