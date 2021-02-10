@@ -42,7 +42,12 @@ public class HttpSinkTask extends SinkTask {
     if (records.isEmpty()) {
       return;
     }
-    apiRequestInvoker.invoke(records);
+    try {
+      apiRequestInvoker.invoke(records);
+    } catch (NullPointerException e) {
+      log.debug("HttpSinkTask - Printing stack trace:");
+      e.printStackTrace();
+    }
 
     //Request a commit of the processed message
     //else the commit is triggered after the  'offset.flush.interval.ms'
