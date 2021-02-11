@@ -158,6 +158,9 @@ public class ApiRequest implements Request{
                 sb.append(line);
             }
             String response = sb.toString();
+            if ( response.isEmpty() && responseType == ResponseTypes.SUCCESS ) {
+              response = "{\"message\": \"success\", \"retry\":false}";
+            }
             log.info("Api {} Response:{}", responseType, response);
             return response;
         }
