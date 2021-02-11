@@ -15,7 +15,7 @@ public class KafkaRecord {
         this.key = record.key()== null ? "" : record.key().toString();
         this.offset = record.kafkaOffset();
         this.partition = record.kafkaPartition();
-        this.value = record.value().toString();
+        this.value = record.value().toString().replaceAll("^\"|\"$", "");
     }
 
     public String getTopic() {
